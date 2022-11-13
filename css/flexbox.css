@@ -1,0 +1,170 @@
+/*HOJA PARA TRABAJAR SÓLO POSICIONAMIENTO*/
+
+/*HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER */
+
+/*OPCIÓN 1 PARA COLOCAR UN CONTENEDOR AL LADO DEL OTRO= MUCHO CÓDIGO*/
+
+/*título de la página que dice mini alura*/
+/*.headerPrincipal-titulo{
+    display: inline-block; /*se encuentran todos los elementos en vertical, los colocamos horizontal*/
+ /*  vertical-align: middle; /*sin este estilo minialura queda en la parte inferior pero para quedar centrado se coloca esta propiedad*/
+/*}
+
+/*este nav tiene el contenido de home, cursos, sobre alura, contactos y nuestra APP*/
+/*.headerPrincipal-nav{
+    display: inline-block; /*se encuentran todos los elementos en vertical, los colocamos horizontal*/
+ /*  vertical-align: middle; /*para que los cambios de middle del título se ejecuten se debe pasar la propiedad a los dos objetos del header*/
+/*}
+
+/*FLOAT RIGHT: SE COLOCAN DENTRO DEL MISMO COONTENEDOR LOS OBJETOS A LA DERECHA, PERO TIENE UN DEFECTO
+NO COLOCA UN ANCHO Y UN ALTO Y SE SOBREPONEN OTROS OBJETOS, TOCARÍA COLOCAR MÁS CÓDIGO PARA LAS MARGENES Y DISTANCIAS
+*/
+
+/*OPCÍON 2: TRABAJAR DESDE EL CONTENEDOR PADRE: EN ESTE CASO EL HEADER y el contenedor que tiene el titulo y el nav */
+
+.headerPrincipal .container{
+    display: flex; /*conseguimos dejar los elementos uno al lado del otro: titulo y nav*/
+    align-items: center; /*con las dos propiedades anteriores logramos lo que se hizo en opción uno*/
+    justify-content: space-between; /*propiedad de flex que da espacio entre los elementos*/
+} 
+
+/*LOS ELEMENTOS DEL MENÚ SE ENCUENTRAN VERTICAL, SE QUIEREN HORIZONTAL Y PARA ELLO SE USA LA CLASE PADRE DEL NAV*/
+
+.headerPrincipal-nav{
+    display: flex; /*quedaron horizontal*/
+}
+
+/*NUESTROS CURSOS   NUESTROS CURSOS  NUESTROS CURSOS NUESTROS CURSOS   NUESTROS CURSOS  NUESTROS CURSOS*/
+
+.contenidoPrincipal-cursos{
+    display: flex;
+    flex-wrap: wrap; /*con esta propiedad todos los cursos quedarin ocupando varias cajas una al lado de la otra en un cuadrado*/
+}
+
+
+/*la posición absoluta quiebra el espacio que tiene cada elemento y pone uno encima de otro y así vienen los estilos de la clase contenidoPrincipal-cursos-link POR ESO: */
+.contenidoPrincipal-cursos-link{
+    display: flex;
+    width: 23%; 
+}
+
+
+
+
+/*caniuse.com sirve para verificar que los exploradores soporten las propiedades de css usados*/
+
+/*MAPA DE CURSOS MAPA DE CURSOS MAPA DE CURSOS*/
+
+.rodapePrincipal-navMap-list{ /*por defecto estos elementos vienen con la propiedad flex-direction: row, se cambia en este caso por column*/
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    flex-wrap: wrap; /*sin esta propiedad la lista de cursos estaría sólo vertical y pasaría por encima del footer, pero que esta, se le pide a cada columna que corte en 250 y vuelva a generar otra columna al lado derecho quebrar el contenido de acuerdo a la altura*/
+}
+
+
+
+
+/*FOOTER FOOTER FOOTER FOOTER*/
+
+.rodapePrincipal-patrocinadores .container{ /*colocq el input del mail al lado de los logos en footer*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.rodapePrincipal-patrocinadores-list{ /*el contenedor de los logos se alínea y se crea un espacio entre ellos, no sin antes colocar un porcentaje de tamaño al contenedor de logos*/
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    margin-right: 5%;
+}
+
+.rodapePrincipal-contatoForm{
+    width: 25%;
+}
+
+.rodapePrincipal-contatoForm-fieldset{ /*propiedad que obliga al boton y al input a mantenerse uno al lado del otro y no uno debajo del otro*/
+    display:flex;
+}
+
+
+/*AJUSTANDO PARA QUE SEA RESPONSIVA*/
+@media (max-width: 768px){
+    /*lo del header*/
+    .headerPrincipal .container{
+        flex-direction: column;
+        align-items: initial; /*con esta propiedad logramos que los elementos del header queden ocupando todo el espacio de su contenedor pues está alieado al centro y en columnas y se quita esa caracteristica con este initial para que vaya de punta a punta*/
+        text-align: center;
+    }
+
+    .headerPrincipal-nav{
+        flex-direction: column;
+    }
+
+    /*main en sobre los cursos*/
+
+    .contenidoPrincipal-cursos{
+        flex-direction: column; /*los contendores quedan en columna en uno*/
+    }
+
+    .contenidoPrincipal-cursos-link{
+        width: 100%; /*las cajan ocupan a lo ancho el 100% de la pantalla*/
+    }
+    /*ARREGLO PARA VÍDEO*/
+
+    .videoSobre .container{
+        display: flex;
+    }
+
+    .videoSobre-sobre{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .videoSobre-video{
+        flex-grow: 2; /*toma todo el espacio que sobra a los lados y lo divide en las secciones del contenedor*/
+        flex-shrink: 2; /*a medida que la pantalla se achica, el vídeo se reduce dos veces menos*/
+    }
+    
+    .videoSobre-sobre-list{
+        flex-grow: 2; /*vuelve a dividir el contenedor en dos y coloca el botón con un espacio entre elementos de la*/
+    }
+
+    /*MAPA DE CURSOS*/
+    .rodapePrincipal-navMap-list{
+        height: auto; /*se colocan en vertical todo el contenido*/
+        flex-wrap: nowrap;
+    }
+
+
+
+    /*FOOTER*/
+    .rodapePrincipal-patrocinadores .container{
+        flex-direction: column;
+    }
+
+    .rodapePrincipal-contatoForm{
+        width: 100%;
+    }
+
+    .rodapePrincipal-patrocinadores-list{ /*los logos quedan distanciados y ocupando todo el ancho*/
+        align-items: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .rodapePrincipal-contatoForm-fieldset{
+        justify-content: center; /*el label e input de contacto quedaban a la izquierda*/
+    }
+
+    .videoSobre .container{
+        flex-direction: column;
+    }
+
+    .headerPrincipal-nav-link{
+        order: -1; /* FLEX ORDER: esto es una función que hace que este elemento dentro de la vista de celular, aparezca primero dentro de una lista, pero que quede en su posición normal cuando vuelva a tamaño pantalla*/ 
+    }
+
+}
